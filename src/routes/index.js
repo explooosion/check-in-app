@@ -1,11 +1,11 @@
-import Example from '../pages/Example';
+import CheckIn from '../pages/CheckIn';
 
 export default [
   {
-    key: 'example',
+    key: 'check-in',
     path: '/',
     exact: true,
-    component: Example,
+    component: CheckIn,
     title: '',
   },
 ];

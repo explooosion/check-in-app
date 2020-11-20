@@ -22,10 +22,9 @@ export const storage = firebase.storage();
 
 export const db = firebase.database().ref(DATABASE);
 
-export const ref = firebase.database().ref(`${DATABASE}/${TABLE}`);
+export const usersRef = firebase.database().ref(`${DATABASE}/${TABLE}`);
 
-// Auth
-// export const auth = firebase.auth();
+export const userRef = (id) =>
+  firebase.database().ref(`${DATABASE}/${TABLE}/${id}`);
 
-// For google sign in
-// export const provider = new firebase.auth.GoogleAuthProvider();
+export const TIMESTAMP = firebase.database.ServerValue.TIMESTAMP;
