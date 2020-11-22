@@ -109,11 +109,17 @@ const Version = styled.div`
 
   a {
     color: ${(p) => p.theme.gray};
+    text-decoration: none;
+    ${transitions('color 1s ease-out')};
   }
 
   &.checked {
     color: ${(p) => p.theme.white};
     opacity: 0.6;
+
+    a {
+      color: ${(p) => p.theme.white};
+    }
   }
 `;
 
@@ -132,12 +138,12 @@ function CheckIn() {
     if (name) {
       dispatch({ type: CHECK_IN_USER, payload: { name } });
       setIcon('pi-spin pi-spinner');
-      setTimeout(() => setIcon('pi-check'), 1000);
+      setTimeout(() => setIcon('pi-check'), 800);
       setTimeout(() => {
         setName('');
         setIsChecked(true);
         setMessage({ title: '完成簽到', sub: '您可以安心關閉本視窗' });
-      }, 1500);
+      }, 1400);
     }
   };
 
@@ -179,10 +185,10 @@ function CheckIn() {
           isChecked ? 'checked' : ''
         }`}
       >
-        線上簽到系統
+        <Link to="/login">線上簽到系統</Link>
         <b>v1.6.8</b>
         <Link to="/qrcode">
-          <ImQrcode size="1.5rem" />
+          <ImQrcode size="2rem" />
         </Link>
       </Version>
     </Main>

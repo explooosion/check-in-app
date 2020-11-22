@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, delay, put, takeLatest } from 'redux-saga/effects';
 
 import {
   FETCH_USERS,
@@ -21,11 +21,14 @@ import {
 } from '../services/Users';
 
 function* fetchUsers() {
-  const response = yield call(fetchUsersService);
-  if (response.status) {
-    yield put({ type: FETCH_USERS_SUCCESS, payload: response.data });
-  } else {
-    yield put({ type: FETCH_USERS_ERROR, payload: response.error });
+  while (true) {
+    const response = yield call(fetchUsersService);
+    if (response.status) {
+      yield put({ type: FETCH_USERS_SUCCESS, payload: response.data });
+    } else {
+      yield put({ type: FETCH_USERS_ERROR, payload: response.error });
+    }
+    yield delay(1000 * 10);
   }
 }
 

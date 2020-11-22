@@ -16,15 +16,24 @@ firebase.initializeApp(config);
 firebase.auth().useDeviceLanguage();
 
 const DATABASE = 'check-in-app';
-const TABLE = 'users';
+
+const TABLE = {
+  USERS: 'users',
+  CONFIG: 'config',
+  AUTH: 'auth',
+};
 
 export const storage = firebase.storage();
 
 export const db = firebase.database().ref(DATABASE);
 
-export const usersRef = firebase.database().ref(`${DATABASE}/${TABLE}`);
+export const usersRef = firebase.database().ref(`${DATABASE}/${TABLE.USERS}`);
 
 export const userRef = (id) =>
-  firebase.database().ref(`${DATABASE}/${TABLE}/${id}`);
+  firebase.database().ref(`${DATABASE}/${TABLE.USERS}/${id}`);
+
+export const configRef = firebase.database().ref(`${DATABASE}/${TABLE.CONFIG}`);
+
+export const authRef = firebase.database().ref(`${DATABASE}/${TABLE.AUTH}`);
 
 export const TIMESTAMP = firebase.database.ServerValue.TIMESTAMP;

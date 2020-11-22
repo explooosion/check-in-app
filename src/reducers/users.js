@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const FETCH_USERS = 'FETCH_USERS';
 export const FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
 export const FETCH_USERS_ERROR = 'FETCH_USERS_ERROR';
@@ -26,7 +28,11 @@ export default (state = initialState, action) => {
     case FETCH_USERS:
       return { ...state, isFetching: true };
     case FETCH_USERS_SUCCESS:
-      return { ...state, lists: action.payload, isFetching: false };
+      return {
+        ...state,
+        lists: _.sortBy(action.payload, 'createAt'),
+        isFetching: false,
+      };
     case FETCH_USERS_ERROR:
       return { ...state, error: action.payload, isFetching: false };
 

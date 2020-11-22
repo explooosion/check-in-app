@@ -6,11 +6,16 @@ import { usersRef, userRef, TIMESTAMP } from '../boot/firebase';
 /**
  * Get user list
  */
-export const fetchUsersService = () =>
-  usersRef
+export const fetchUsersService = () => {
+  // return usersRef
+  //   .orderByChild('createAt')
+  //   .on('value', (snapshot) => callback({ status: true, data: _.valuesIn(snapshot.val()) }))
+  return usersRef
+    .orderByChild('createAt')
     .once('value')
     .then((snapshot) => ({ status: true, data: _.valuesIn(snapshot.val()) }))
     .catch((error) => ({ status: false, error }));
+};
 
 /**
  * Create user
