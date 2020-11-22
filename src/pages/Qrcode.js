@@ -45,6 +45,7 @@ const Main = styled.section`
   img {
     margin-top: 25vh;
     width: 70%;
+    max-width: 224px;
     z-index: 1;
   }
 `;

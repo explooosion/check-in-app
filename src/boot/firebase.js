@@ -17,11 +17,18 @@ firebase.auth().useDeviceLanguage();
 
 const DATABASE = 'check-in-app';
 
-const TABLE = {
-  USERS: 'users',
-  CONFIG: 'config',
-  AUTH: 'auth',
-};
+const TABLE =
+  process.env.NODE_ENV === 'production'
+    ? {
+        USERS: 'users',
+        CONFIG: 'config',
+        AUTH: 'auth',
+      }
+    : {
+        USERS: 'users_dev',
+        CONFIG: 'config_dev',
+        AUTH: 'auth_dev',
+      };
 
 export const storage = firebase.storage();
 
