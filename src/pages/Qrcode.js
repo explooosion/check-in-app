@@ -62,8 +62,8 @@ const Version = styled.div`
   }
 
   a {
-    color: ${(p) => p.theme.gray};
     text-decoration: none;
+    color: ${(p) => p.theme.gray};
   }
 `;
 

@@ -74,8 +74,8 @@ const Version = styled.div`
   }
 
   a {
-    color: ${(p) => p.theme.white};
     text-decoration: none;
+    color: ${(p) => p.theme.white};
   }
 `;
 
