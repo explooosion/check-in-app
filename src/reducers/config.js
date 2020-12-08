@@ -3,7 +3,7 @@ export const FETCH_CONFIG_SUCCESS = 'FETCH_CONFIG_SUCCESS';
 export const FETCH_CONFIG_ERROR = 'FETCH_CONFIG_ERROR';
 
 const initialState = {
-  config: [],
+  config: {},
   loading: false,
   error: null,
 };

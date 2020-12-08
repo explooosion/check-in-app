@@ -25,20 +25,20 @@ const Main = styled.section`
 
   .title {
     position: absolute;
-    top: 5vh;
+    top: 2.5vh;
     text-align: center;
-    user-select: none;
     z-index: 1;
 
     h1 {
       margin: 0;
-      font-size: 2rem;
+      font-size: 1.65rem;
       font-weight: bold;
       color: ${(p) => p.theme.white};
     }
 
     h2 {
       margin: 0;
+      font-size: 1.35rem;
       color: ${(p) => p.theme.white};
     }
   }
@@ -52,7 +52,7 @@ const Main = styled.section`
 
 const Form = styled.form`
   overflow: hidden;
-  margin-top: 25vh;
+  margin-top: 18vh;
   padding: 1rem 1.5rem 0;
   width: 85%;
   color: ${(p) => p.theme.dark};
@@ -63,11 +63,10 @@ const Form = styled.form`
 
 const Version = styled.div`
   position: fixed;
-  bottom: 2rem;
+  bottom: 1rem;
   width: 100%;
   text-align: center;
   color: ${(p) => p.theme.white};
-  user-select: none;
 
   b {
     margin: 0 0.5rem;
@@ -101,7 +100,7 @@ function Login() {
         <h2>後台登入</h2>
       </div>
       <Form className="p-d-flex p-flex-column">
-        <h2 className="p-m-0 p-text-center">Login</h2>
+        <h2 className="p-m-0 p-text-center">登入</h2>
         <div
           className="p-d-flex p-flex-column p-jc-between p-mt-3 p-pb-3"
           style={{ height: '100%' }}
@@ -110,16 +109,18 @@ function Login() {
             <i className="pi pi-user" />
             <InputText
               className="p-inputtext-md"
+              name="username"
               placeholder="Username"
               autoComplete="username"
               onChange={onChangeUserName}
               style={{ width: '100%' }}
             />
           </span>
-          <span className="p-input-icon-left p-mb-3">
+          <span className="p-input-icon-left p-mb-5">
             <i className="pi pi-lock" />
             <InputText
               className="p-inputtext-md"
+              name="password"
               placeholder="Password"
               type="password"
               autoComplete="current-password"
@@ -136,7 +137,7 @@ function Login() {
         </div>
       </Form>
       <Version className="p-d-flex p-flex-column p-ai-center p-jc-center">
-        <div className="p-mb-4">v1.6.8</div>
+        <div className="p-mb-2">v1.6.8</div>
         <div>
           <Link to="/" className="p-mr-4">
             <BiMessageCheck size="2rem" />

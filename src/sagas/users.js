@@ -11,6 +11,7 @@ import {
   UPDATE_USER_SUCCESS,
   UPDATE_USER_ERROR,
   CHECK_IN_USER,
+  DELETE_ALL_USERS,
 } from '../reducers/users';
 
 import {
@@ -18,6 +19,7 @@ import {
   createUserService,
   updateUserService,
   checkInUserService,
+  deleteAllUsersService,
 } from '../services/Users';
 
 function* fetchUsers() {
@@ -28,7 +30,7 @@ function* fetchUsers() {
     } else {
       yield put({ type: FETCH_USERS_ERROR, payload: response.error });
     }
-    yield delay(1000 * 10);
+    yield delay(1000 * 3);
   }
 }
 
@@ -59,9 +61,14 @@ function* checkInUser({ payload }) {
   }
 }
 
+function* deleteAllUsers() {
+  yield call(deleteAllUsersService);
+}
+
 export default function* () {
   yield takeLatest(FETCH_USERS, fetchUsers);
   yield takeLatest(CREATE_USER, createUser);
   yield takeLatest(UPDATE_USER, updateUser);
   yield takeLatest(CHECK_IN_USER, checkInUser);
+  yield takeLatest(DELETE_ALL_USERS, deleteAllUsers);
 }

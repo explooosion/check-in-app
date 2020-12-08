@@ -38,7 +38,7 @@ export const updateUserService = (payload) => {
   return userRef(_.get(payload, 'id'))
     .update(
       _.chain(payload)
-        .pick(['status', 'name'])
+        .pick(['status', 'name', 'school'])
         .assign({ updateAt: TIMESTAMP })
         .value()
     )
@@ -54,10 +54,20 @@ export const checkInUserService = (payload) => {
   return userRef(id)
     .set(
       _.chain(payload)
-        .pick(['name'])
+        .pick(['name', 'school'])
         .assign({ id, status: true, createAt: TIMESTAMP })
         .value()
     )
+    .then(() => ({ status: true }))
+    .catch((error) => ({ status: false, error }));
+};
+
+/**
+ * Check in user
+ */
+export const deleteAllUsersService = () => {
+  return usersRef
+    .remove()
     .then(() => ({ status: true }))
     .catch((error) => ({ status: false, error }));
 };

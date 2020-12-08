@@ -11,7 +11,6 @@ import { CHECK_IN_USER } from '../reducers/users';
 
 const Main = styled.section`
   position: relative;
-  overflow: hidden;
   background-color: ${(p) => p.theme.milk};
 
   &::before {
@@ -19,7 +18,7 @@ const Main = styled.section`
     position: fixed;
     top: 0;
     width: 100vw;
-    height: 50vh;
+    height: 60vh;
     background-color: #006fe3;
     border-radius: 0 0 60% 30%;
     z-index: 0;
@@ -43,21 +42,21 @@ const Main = styled.section`
 
   .title {
     position: absolute;
-    top: 5vh;
+    top: 2.5vh;
     text-align: center;
-    user-select: none;
     ${transitions('top 0.6s ease-in-out')};
 
     h1 {
       margin: 0;
-      font-size: 2.25rem;
+      font-size: 1.65rem;
       font-weight: bold;
       color: ${(p) => p.theme.white};
       z-index: 1;
     }
 
-    h4 {
+    h3 {
       margin: 0;
+      font-size: 1.35rem;
       color: ${(p) => p.theme.white};
       z-index: 1;
       ${transitions('opacity 0.6s ease-in-out')};
@@ -67,7 +66,7 @@ const Main = styled.section`
 
 const Form = styled.div`
   overflow: hidden;
-  margin-top: 25vh;
+  margin-top: 18vh;
   padding: 1rem 1.5rem 0;
   width: 85%;
   color: ${(p) => p.theme.dark};
@@ -82,25 +81,22 @@ const Form = styled.div`
   }
 
   h2 {
-    margin: 0 0 1rem;
-    user-select: none;
+    margin: 0;
   }
 
   h4 {
     margin: 0;
     font-weight: normal;
     color: ${(p) => p.theme.gray};
-    user-select: none;
   }
 `;
 
 const Version = styled.div`
   position: fixed;
-  bottom: 2rem;
+  bottom: 0.5rem;
   width: 100%;
   text-align: center;
   color: ${(p) => p.theme.gray};
-  user-select: none;
   ${transitions('all 1s ease-out')};
 
   b {
@@ -123,31 +119,37 @@ const Version = styled.div`
   }
 `;
 
+const initialMessage = {
+  title: '109學年度國中小學校長',
+  sub: '科技體驗研習講座',
+};
+
+const doneMessage = {
+  title: '完成簽到',
+  sub: '您可以安心關閉本視窗',
+};
+
 function CheckIn() {
   const [name, setName] = useState('');
-  const [message, setMessage] = useState({
-    title: 'ＯＯＯ講座',
-    sub: 'ＸＸＸＸＸＸＸ描述',
-  });
+  const [school, setSchool] = useState('');
+  const [message, setMessage] = useState(initialMessage);
   const [icon, setIcon] = useState('');
   const [isChecked, setIsChecked] = useState(false);
 
   const dispatch = useDispatch();
 
   const onSubmit = () => {
-    if (name) {
-      dispatch({ type: CHECK_IN_USER, payload: { name } });
+    if (name && school) {
+      dispatch({ type: CHECK_IN_USER, payload: { name, school } });
       setIcon('pi-spin pi-spinner');
       setTimeout(() => setIcon('pi-check'), 800);
       setTimeout(() => {
         setName('');
         setIsChecked(true);
-        setMessage({ title: '完成簽到', sub: '您可以安心關閉本視窗' });
-      }, 1400);
+        setMessage(doneMessage);
+      }, 1200);
     }
   };
-
-  const onChange = (e) => setName(e.target.value);
 
   return (
     <Main
@@ -157,25 +159,31 @@ function CheckIn() {
     >
       <div className="title">
         <h1>{message.title}</h1>
-        <h4>{message.sub}</h4>
+        <h3>{message.sub}</h3>
       </div>
       <Form className={`p-d-flex p-flex-column ${isChecked ? 'checked' : ''}`}>
         <h2>線上簽到表</h2>
-        <h4>請於下方輸入您的大名：</h4>
         <div
           className="p-d-flex p-flex-column p-jc-between p-mt-3 p-pb-3"
           style={{ height: '100%' }}
         >
+          <h4>請於下方輸入報到資料：</h4>
           <InputText
-            className="p-inputtext-lg p-mb-5"
+            className="p-inputtext-md p-mt-1 p-mb-3"
             value={name}
-            onChange={onChange}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <h4>請於下方輸入您的學校名稱：</h4>
+          <InputText
+            className="p-inputtext-md p-mt-1 p-mb-4"
+            value={school}
+            onChange={(e) => setSchool(e.target.value)}
           />
           <Button
             label="送出"
             icon={`pi ${icon}`}
             iconPos="right"
-            className="p-button-lg"
+            className="p-button-md"
             onClick={onSubmit}
           />
         </div>
@@ -185,8 +193,9 @@ function CheckIn() {
           isChecked ? 'checked' : ''
         }`}
       >
-        <Link to="/login">線上簽到系統</Link>
-        <b>v1.6.8</b>
+        <Link to="/login" className="p-mr-4">
+          線上簽到系統
+        </Link>
         <Link to="/qrcode">
           <ImQrcode size="2rem" />
         </Link>

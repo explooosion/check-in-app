@@ -14,6 +14,8 @@ export const UPDATE_USER_ERROR = 'UPDATE_USER_ERROR';
 
 export const CHECK_IN_USER = 'CHECK_IN_USER';
 
+export const DELETE_ALL_USERS = 'DELETE_ALL_USERS';
+
 const initialState = {
   lists: [],
   isFetching: false,

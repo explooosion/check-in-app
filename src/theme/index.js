@@ -32,6 +32,7 @@ export const color = {
   white: '#fff',
   milk: '#fbfcff',
   gray: '#888',
+  gray2: '#ccc',
   dark: '#17212F',
   dark2: '#1F2E3F',
   dark3: '#304562',
