@@ -167,7 +167,7 @@ function CheckIn() {
           className="p-d-flex p-flex-column p-jc-between p-mt-3 p-pb-3"
           style={{ height: '100%' }}
         >
-          <h4>請於下方輸入報到資料：</h4>
+          <h4>請於下方輸入您的姓名：</h4>
           <InputText
             className="p-inputtext-md p-mt-1 p-mb-3"
             value={name}
