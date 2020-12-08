@@ -167,23 +167,23 @@ function CheckIn() {
           className="p-d-flex p-flex-column p-jc-between p-mt-3 p-pb-3"
           style={{ height: '100%' }}
         >
+          <h4>請於下方輸入您的學校名稱：</h4>
+          <InputText
+            className="p-inputtext-md p-mt-1 p-mb-3"
+            value={school}
+            onChange={(e) => setSchool(e.target.value)}
+          />
           <h4>請於下方輸入您的姓名：</h4>
           <InputText
             className="p-inputtext-md p-mt-1 p-mb-3"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-          <h4>請於下方輸入您的學校名稱：</h4>
-          <InputText
-            className="p-inputtext-md p-mt-1 p-mb-4"
-            value={school}
-            onChange={(e) => setSchool(e.target.value)}
-          />
           <Button
             label="送出"
             icon={`pi ${icon}`}
             iconPos="right"
-            className="p-button-md"
+            className="p-button-md p-mt-1"
             onClick={onSubmit}
           />
         </div>
